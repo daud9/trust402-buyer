@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
+  import {
   WalletProvider,
-  walletConfig,
+  walletManager,
   WalletButton,
 } from "./wallet";
 
 function App() {
   return (
-    <WalletProvider value={walletConfig}>
+    <WalletProvider manager={walletManager}>
       <div
         style={{
           padding: "30px",
