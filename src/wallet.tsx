@@ -1,9 +1,10 @@
 import {
   WalletProvider,
   WalletManager,
-  WalletId,
   useWallet,
 } from "@txnlab/use-wallet-react";
+
+import { WalletId } from "@txnlab/use-wallet";
 
 export const walletManager = new WalletManager({
   wallets: [WalletId.PERA],
