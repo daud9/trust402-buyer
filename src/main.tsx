@@ -1,31 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  WalletProvider,
-  walletManager,
-  WalletButton,
-} from "./wallet";
 
 function App() {
   return (
-    <WalletProvider manager={walletManager}>
-      <div
+    <div
+      style={{
+        padding: "30px",
+        fontFamily: "Arial",
+        maxWidth: "600px",
+        margin: "0 auto",
+      }}
+    >
+      <h1>Trust402 Buyer</h1>
+      <p>Frontend test is working.</p>
+      <button
         style={{
-          padding: "30px",
-          fontFamily: "Arial",
-          maxWidth: "600px",
-          margin: "0 auto",
+          padding: "12px 18px",
+          fontSize: "16px",
         }}
       >
-        <h1>Trust402 Buyer</h1>
-
-        <p>
-          Algorand TestNet wallet connection
-        </p>
-
-        <WalletButton />
-      </div>
-    </WalletProvider>
+        Test Button
+      </button>
+    </div>
   );
 }
 
