@@ -1,20 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {
+  WalletProvider,
+  walletConfig,
+  WalletButton,
+} from "./wallet";
 
 function App() {
   return (
-    <div
-      style={{
-        padding: "30px",
-        fontFamily: "Arial",
-        maxWidth: "600px",
-        margin: "0 auto",
-      }}
-    >
-      <h1>Trust402 Buyer</h1>
-      <p>Frontend is running successfully.</p>
-      <p>Next: wallet connection.</p>
-    </div>
+    <WalletProvider value={walletConfig}>
+      <div
+        style={{
+          padding: "30px",
+          fontFamily: "Arial",
+          maxWidth: "600px",
+          margin: "0 auto",
+        }}
+      >
+        <h1>Trust402 Buyer</h1>
+        <p>Wallet connection test</p>
+
+        <WalletButton />
+      </div>
+    </WalletProvider>
   );
 }
 
