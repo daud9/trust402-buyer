@@ -5,6 +5,7 @@ import {
   walletConfig,
   WalletButton,
 } from "./wallet";
+import { TrustButton } from "./payment";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <p>Agent payment client</p>
 
         <WalletButton />
+        <TrustButton />
       </div>
     </WalletProvider>
   );
