@@ -1,36 +1,49 @@
 import {
   WalletProvider,
-  WalletManager,
   useWallet,
 } from "@txnlab/use-wallet-react";
 
-import { WalletId } from "@txnlab/use-wallet";
-
-export const walletManager = new WalletManager({
-  wallets: [WalletId.PERA],
-  defaultNetwork: "testnet",
-});
+const walletConfig = {
+  wallets: [
+    {
+      id: "pera",
+    },
+  ],
+};
 
 export function WalletButton() {
   const {
     activeAccount,
-    connect,
-    disconnect,
+    providers,
   } = useWallet();
+
+  const connectPera = async () => {
+    const pera = providers?.find(
+      (provider) => provider.metadata.id === "pera"
+    );
+
+    if (pera) {
+      await pera.connect();
+    }
+  };
 
   if (activeAccount) {
     return (
-      <button onClick={disconnect}>
-        Disconnect {activeAccount.address.slice(0, 8)}...
-      </button>
+      <div>
+        <p>
+          Connected: {activeAccount.address.slice(0, 8)}...
+        </p>
+      </div>
     );
   }
 
   return (
-    <button onClick={() => connect(WalletId.PERA)}>
+    <button onClick={connectPera}>
       Connect Pera Wallet
     </button>
   );
 }
 
 export { WalletProvider };
+
+export { walletConfig };
