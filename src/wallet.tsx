@@ -1,12 +1,14 @@
 import {
   WalletProvider,
+  WalletManager,
   WalletId,
   useWallet,
 } from "@txnlab/use-wallet-react";
 
-export const walletConfig = {
+export const walletManager = new WalletManager({
   wallets: [WalletId.PERA],
-};
+  defaultNetwork: "testnet",
+});
 
 export function WalletButton() {
   const {
