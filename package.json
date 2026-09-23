@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@txnlab/use-wallet": "5.0.0",
     "@txnlab/use-wallet-react": "5.0.0",
     "@x402/avm": "2.17.0",
     "@x402/core": "2.17.0",
