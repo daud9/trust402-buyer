@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { walletManager } from "./wallet";
 
 function App() {
   return (
@@ -12,15 +13,8 @@ function App() {
       }}
     >
       <h1>Trust402 Buyer</h1>
-      <p>Frontend test is working.</p>
-      <button
-        style={{
-          padding: "12px 18px",
-          fontSize: "16px",
-        }}
-      >
-        Test Button
-      </button>
+      <p>Wallet module loaded successfully.</p>
+      <p>Wallet manager: {walletManager ? "OK" : "ERROR"}</p>
     </div>
   );
 }
