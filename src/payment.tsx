@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useWallet } from "@txnlab/use-wallet-react";
 import { x402Client } from "@x402/core/client";
-import { registerExactAvmScheme } from "@x402/avm/exact/client";
+import { ExactAvmScheme } from "@x402/avm/exact/client";
 import type { ClientAvmSigner } from "@x402/avm";
 
 const TRUST402_URL =
@@ -35,9 +35,10 @@ export function TrustButton() {
         schemes: [],
       });
 
-      registerExactAvmScheme(client, {
-        signer,
-      });
+      client.register(
+  "algorand:*",
+  new ExactAvmScheme(signer)
+);
 
       const response = await client.fetch(TRUST402_URL, {
         method: "POST",
