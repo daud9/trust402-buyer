@@ -10,7 +10,30 @@ function App() {
   const {
     wallets,
     activeAddress,
+    isReady,
   } = useWallet();
+
+  if (!isReady) {
+    return <p style={{ padding: "30px" }}>Loading wallet...</p>;
+  }
+
+  const connectPera = async () => {
+    const pera = wallets.find(
+      (wallet) => wallet.id === "pera"
+    );
+
+    if (!pera) {
+      alert("Pera Wallet not available");
+      return;
+    }
+
+    try {
+      await pera.connect();
+    } catch (error) {
+      console.error(error);
+      alert("Pera connection was cancelled or failed.");
+    }
+  };
 
   const disconnectPera = () => {
     const pera = wallets.find(
@@ -38,7 +61,7 @@ function App() {
       {activeAddress ? (
         <div>
           <p>
-            Connected:
+            <strong>Connected:</strong>
             <br />
             {activeAddress}
           </p>
@@ -48,7 +71,16 @@ function App() {
           </button>
         </div>
       ) : (
-        <p>Wallet not connected.</p>
+        <button
+          onClick={connectPera}
+          style={{
+            padding: "14px 20px",
+            fontSize: "16px",
+            fontWeight: "bold",
+          }}
+        >
+          Connect Pera Wallet
+        </button>
       )}
     </div>
   );
