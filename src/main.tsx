@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { TrustButton } from "./payment";
 import {
   WalletProvider,
   walletManager,
