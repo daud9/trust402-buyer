@@ -5,10 +5,22 @@ import {
   walletManager,
   useWallet,
 } from "./wallet";
-import { TrustButton } from "./payment";
 
 function App() {
-  const { activeAddress } = useWallet();
+  const {
+    wallets,
+    activeAddress,
+  } = useWallet();
+
+  const disconnectPera = () => {
+    const pera = wallets.find(
+      (wallet) => wallet.id === "pera"
+    );
+
+    if (pera) {
+      pera.disconnect();
+    }
+  };
 
   return (
     <div
@@ -31,25 +43,13 @@ function App() {
             {activeAddress}
           </p>
 
-          <button
-            onClick={() => {
-              const pera = walletManager.wallets.find(
-                (wallet) => wallet.id === "pera"
-              );
-
-              if (pera) {
-                pera.disconnect();
-              }
-            }}
-          >
+          <button onClick={disconnectPera}>
             Disconnect
           </button>
         </div>
       ) : (
-        <p>Connect your Pera Wallet to continue.</p>
+        <p>Wallet not connected.</p>
       )}
-
-      <TrustButton />
     </div>
   );
 }
