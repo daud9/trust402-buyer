@@ -83,6 +83,8 @@ function App() {
           Connect Pera Wallet
         </button>
       )}
+      
+      <TrustButton />
     </div>
   );
 }
