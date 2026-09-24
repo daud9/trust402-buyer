@@ -5,38 +5,22 @@ import {
   walletManager,
   useWallet,
 } from "./wallet";
+import { TrustButton } from "./payment";
 
-function WalletTest() {
-  const {
-    wallets,
-    activeAddress,
-    isReady,
-  } = useWallet();
-
-  if (!isReady) {
-    return <p>Loading wallet...</p>;
-  }
-
-  const connectPera = async () => {
-    const pera = wallets.find(
-      (wallet) => wallet.id === "pera"
-    );
-
-    if (!pera) {
-      alert("Pera Wallet not available");
-      return;
-    }
-
-    try {
-      await pera.connect();
-    } catch (error) {
-      console.error(error);
-      alert("Pera connection was cancelled or failed.");
-    }
-  };
+function App() {
+  const { activeAddress } = useWallet();
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div
+      style={{
+        padding: "30px",
+        fontFamily: "Arial",
+        maxWidth: "600px",
+        margin: "0 auto",
+      }}
+    >
+      <h1>Trust402 Buyer</h1>
+
       <h2>Wallet Connection</h2>
 
       {activeAddress ? (
@@ -49,7 +33,7 @@ function WalletTest() {
 
           <button
             onClick={() => {
-              const pera = wallets.find(
+              const pera = walletManager.wallets.find(
                 (wallet) => wallet.id === "pera"
               );
 
@@ -62,37 +46,11 @@ function WalletTest() {
           </button>
         </div>
       ) : (
-        <button
-          onClick={connectPera}
-          style={{
-            padding: "14px 20px",
-            fontSize: "16px",
-            fontWeight: "bold",
-          }}
-        >
-          Connect Pera Wallet
-        </button>
+        <p>Connect your Pera Wallet to continue.</p>
       )}
+
+      <TrustButton />
     </div>
-  );
-}
-
-function App() {
-  return (
-    <WalletProvider manager={walletManager}>
-      <div
-        style={{
-          padding: "30px",
-          fontFamily: "Arial",
-          maxWidth: "600px",
-          margin: "0 auto",
-        }}
-      >
-        <h1>Trust402 Buyer</h1>
-
-        <WalletTest />
-      </div>
-    </WalletProvider>
   );
 }
 
@@ -100,6 +58,8 @@ ReactDOM.createRoot(
   document.getElementById("root")!
 ).render(
   <React.StrictMode>
-    <App />
+    <WalletProvider manager={walletManager}>
+      <App />
+    </WalletProvider>
   </React.StrictMode>
 );
