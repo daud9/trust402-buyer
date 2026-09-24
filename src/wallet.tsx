@@ -46,4 +46,4 @@ export function WalletButton() {
   );
 }
 
-export { WalletProvider };
+export { WalletProvider, useWallet };
