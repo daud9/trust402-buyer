@@ -5,7 +5,6 @@ import {
   walletManager,
   useWallet,
 } from "./wallet";
-import { TrustButton } from "./payment";
 
 function App() {
   const {
@@ -15,11 +14,7 @@ function App() {
   } = useWallet();
 
   if (!isReady) {
-    return (
-      <p style={{ padding: "30px" }}>
-        Loading wallet...
-      </p>
-    );
+    return <p style={{ padding: "30px" }}>Loading wallet...</p>;
   }
 
   const connectPera = async () => {
@@ -87,8 +82,6 @@ function App() {
           Connect Pera Wallet
         </button>
       )}
-
-      <TrustButton />
     </div>
   );
 }
