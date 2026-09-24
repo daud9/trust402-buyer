@@ -5,4 +5,4 @@ export function TrustButton() {
       <p>Payment component loaded successfully.</p>
     </div>
   );
-}
+} 
