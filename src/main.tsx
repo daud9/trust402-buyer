@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { TrustButton } from "./payment";
-import {
+import { 
   WalletProvider,
   walletManager,
   useWallet,
@@ -85,7 +84,6 @@ function App() {
       )}
       <p>Payment component imported successfully.</p>
       
-      <TrustButton />
     </div>
   );
 }
