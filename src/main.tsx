@@ -83,6 +83,7 @@ function App() {
           Connect Pera Wallet
         </button>
       )}
+      <p>Payment component imported successfully.</p>
       
       <TrustButton />
     </div>
