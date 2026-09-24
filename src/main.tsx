@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { 
+import {
   WalletProvider,
   walletManager,
   useWallet,
@@ -14,7 +14,11 @@ function App() {
   } = useWallet();
 
   if (!isReady) {
-    return <p style={{ padding: "30px" }}>Loading wallet...</p>;
+    return (
+      <p style={{ padding: "30px" }}>
+        Loading wallet...
+      </p>
+    );
   }
 
   const connectPera = async () => {
@@ -31,7 +35,9 @@ function App() {
       await pera.connect();
     } catch (error) {
       console.error(error);
-      alert("Pera connection was cancelled or failed.");
+      alert(
+        "Pera connection was cancelled or failed."
+      );
     }
   };
 
@@ -82,8 +88,6 @@ function App() {
           Connect Pera Wallet
         </button>
       )}
-      <p>Payment component imported successfully.</p>
-      
     </div>
   );
 }
