@@ -7,23 +7,72 @@ import {
 } from "./wallet";
 
 function WalletTest() {
-  const { activeAddress } = useWallet();
+  const {
+    wallets,
+    activeAddress,
+    isReady,
+  } = useWallet();
+
+  if (!isReady) {
+    return <p>Loading wallet...</p>;
+  }
+
+  const connectPera = async () => {
+    const pera = wallets.find(
+      (wallet) => wallet.id === "pera"
+    );
+
+    if (!pera) {
+      alert("Pera Wallet not available");
+      return;
+    }
+
+    try {
+      await pera.connect();
+    } catch (error) {
+      console.error(error);
+      alert("Pera connection was cancelled or failed.");
+    }
+  };
 
   return (
     <div style={{ marginTop: "20px" }}>
-      <h2>Wallet Hook Test</h2>
+      <h2>Wallet Connection</h2>
 
-      <p>
-        Status:{" "}
-        {activeAddress
-          ? "Connected"
-          : "Not connected"}
-      </p>
+      {activeAddress ? (
+        <div>
+          <p>
+            Connected:
+            <br />
+            {activeAddress}
+          </p>
 
-      <p>
-        Address:{" "}
-        {activeAddress || "None"}
-      </p>
+          <button
+            onClick={() => {
+              const pera = wallets.find(
+                (wallet) => wallet.id === "pera"
+              );
+
+              if (pera) {
+                pera.disconnect();
+              }
+            }}
+          >
+            Disconnect
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={connectPera}
+          style={{
+            padding: "14px 20px",
+            fontSize: "16px",
+            fontWeight: "bold",
+          }}
+        >
+          Connect Pera Wallet
+        </button>
+      )}
     </div>
   );
 }
